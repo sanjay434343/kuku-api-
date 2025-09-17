@@ -1,6 +1,5 @@
 // api/search.js
-// GET /api/search?q=ramayan
-// Proxies Kukufm search endpoint
+// GET /api/search?q=ramayan&limit=10&offset=0
 
 export default async function handler(req, res) {
   // Allow CORS
@@ -14,11 +13,14 @@ export default async function handler(req, res) {
 
   try {
     const q = req.query.q || "";
+    const limit = req.query.limit || 10;
+    const offset = req.query.offset || 0;
+
     if (!q) {
       return res.status(400).json({ error: "Missing 'q' query parameter" });
     }
 
-    const remoteUrl = `https://kukufm.com/api/v1/search/?q=${encodeURIComponent(q)}`;
+    const remoteUrl = `https://kukufm.com/api/v1/search/?q=${encodeURIComponent(q)}&size=${limit}&offset=${offset}`;
 
     const upstreamResp = await fetch(remoteUrl, {
       method: "GET",
