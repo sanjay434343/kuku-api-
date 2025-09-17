@@ -1,0 +1,12 @@
+{
+  "name": "kuku-proxy",
+  "version": "1.0.0",
+  "description": "Simple Vercel serverless proxy for kukufm API with CORS enabled",
+  "main": "api/search.js",
+  "scripts": {
+    "start": "vercel dev",
+    "deploy": "vercel --prod"
+  },
+  "author": "",
+  "license": "MIT"
+}
